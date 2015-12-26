@@ -26,17 +26,19 @@ class FeedbackActionPlanController extends Controller
 	 */
 	public function accessRules()
 	{
+		$model = FeedbackActionPlan::model()->findByPk(isset($_GET["id"])? $_GET["id"] : '-1');
+		
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create'),
 				'users'=>array('@'),
 			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('update','delete'),
+				'users'=>array('admin', (isset($model) && isset($model->feedback0->module0->academicYear->student))? $model->feedback0->module0->academicYear->student->email : ''),
+			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','index','view'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -73,7 +75,7 @@ class FeedbackActionPlanController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackActionPlan'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect('index.php');
 		}
 
 		$this->render('create',array(
@@ -97,7 +99,7 @@ class FeedbackActionPlanController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackActionPlan'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect('index.php');
 		}
 
 		$this->render('update',array(
@@ -116,7 +118,7 @@ class FeedbackActionPlanController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect('index.php');
 	}
 
 	/**

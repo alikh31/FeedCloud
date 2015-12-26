@@ -7,10 +7,6 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List FeedbackActionPlan', 'url'=>array('index')),
-	array('label'=>'Manage FeedbackActionPlan', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Create FeedbackActionPlan</h1>

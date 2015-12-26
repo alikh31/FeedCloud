@@ -8,12 +8,6 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
-$this->menu=array(
-	array('label'=>'List FeedbackActionPlan', 'url'=>array('index')),
-	array('label'=>'Create FeedbackActionPlan', 'url'=>array('create')),
-	array('label'=>'View FeedbackActionPlan', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage FeedbackActionPlan', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Update FeedbackActionPlan <?php echo $model->id; ?></h1>

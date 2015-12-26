@@ -11,7 +11,7 @@
  *
  * The followings are the available model relations:
  * @property Module $module0
- * @property FeedbackSwotAnalysis[] $feedbackSwotAnalysises
+ * @property FeedbackSwotAnalysis[] 
  * @property FeedbackActionPlan[] $feedbackActionPlans
  */
 class Feedback extends CActiveRecord

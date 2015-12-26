@@ -26,6 +26,8 @@ class UserController extends Controller
 	 */
 	public function accessRules()
 	{
+		$model = User::model()->findByPk(isset($_GET["id"])? $_GET["id"] : '-1');
+		
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('create'),
@@ -33,10 +35,10 @@ class UserController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('update'),
-				'users'=>array('@'),
+				'users'=>array('admin', (isset($model))? $model->email : ''),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','index','view'),
+				'actions'=>array('admin','index','view','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users

@@ -50,18 +50,20 @@ class AcademicYearController extends Controller
 	 */
 	public function accessRules()
 	{	
+		$model = AcademicYear::model()->findByPk(isset($_GET["id"])? $_GET["id"] : '-1');
+		
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create'),
 				'users'=>array('@'),
 			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('update','delete','view'),
+				'users'=>array('admin', (isset($model) && isset($model->student))? $model->student->email : ''),
+			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('*'),
+				'actions'=>array('admin','index'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -147,7 +149,7 @@ class AcademicYearController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect('index.php');
 	}
 
 	/**

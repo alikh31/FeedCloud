@@ -7,10 +7,6 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List Module', 'url'=>array('index')),
-	array('label'=>'Manage Module', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Create Module</h1>

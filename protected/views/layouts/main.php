@@ -8,6 +8,22 @@
         <meta name="author" content="Ali Khoramshahi">
 
         <title>Feed Cloud</title>
+        
+        
+<?php
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$('#user-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
+?>
 
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/starter-template.css" rel="stylesheet">
@@ -21,7 +37,6 @@
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/swfobject.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/web_socket.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/Chart.js"></script>
-        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/metisMenu.min.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascripts/raphael-min.js"></script>
@@ -53,7 +68,7 @@
 			                		
 	  									foreach ($this->academicYears as $record) {
 	  										echo '<li>'; 
-	  									   	echo "<a href=\"#\">";echo $record->title;echo"</a>";
+	  									   	echo "<a href=\"index.php?r=academicYear/view&id=$record->id\">";echo $record->title;echo"</a>";
 	  									   	echo '</li>';
 	  									}
 			                		

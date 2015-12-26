@@ -7,10 +7,6 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List FeedbackSwotAnalysis', 'url'=>array('index')),
-	array('label'=>'Manage FeedbackSwotAnalysis', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Create FeedbackSwotAnalysis</h1>

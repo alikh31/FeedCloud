@@ -3,11 +3,16 @@
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name;
+
+
+
 ?>
 
 
 <?php 
-	foreach ($academic as $record) { ?>
+	foreach ($academic as $record) { 
+	
+		?> 
 		<div class="col-lg" style="margin-top: 2%;">
 			<div class="panel panel-default">
 	
@@ -16,6 +21,9 @@ $this->pageTitle=Yii::app()->name;
 	        		
 	        		<div class="pull-right" style="margin-top: -.5em;">
                     	<a href="index.php?r=academicYear/update&id= <?php echo $record->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+                    	<? 	echo CHtml::link(CHtml::encode('remove'), array('academicYear/delete', 'id'=>$record->id),
+							array(	'submit'=>array('academicYear/delete', 'id'=>$record->id),
+									'class' => 'delete btn btn-danger','confirm'=>'This will remove the accademic year. Are you sure?'));?>
                     	
                     	<a href="index.php?r=module/create&yearId= <?php echo $record->id;?>" class="btn btn-primary" data-dismiss="modal">Add module</a>
                     </div>
@@ -42,6 +50,10 @@ $this->pageTitle=Yii::app()->name;
 								        		<div class="pull-right" style="margin-top: -.5em;">
 							                    	<a href="index.php?r=module/update&id= <?php echo $module->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
 							                    	
+							                    	<? 	echo CHtml::link(CHtml::encode('remove'), array('module/delete', 'id'=>$module->id),
+														array(	'submit'=>array('module/delete', 'id'=>$module->id),
+																'class' => 'delete btn btn-danger','confirm'=>'This will remove the module. Are you sure?'));?>
+							                    	
 							                    	<a href="index.php?r=feedback/create&moduleId= <?php echo $module->id;?>" class="btn btn-primary" data-dismiss="modal">Add new Feedback</a>
 							                    </div>
 										    </div>
@@ -65,6 +77,10 @@ $this->pageTitle=Yii::app()->name;
 														        		
 														        		<div class="pull-right" style="margin-top: -.5em;">
 													                    	<a href="index.php?r=feedback/update&id= <?php echo $feedback->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+													                    	
+													                    	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedback/delete', 'id'=>$feedback->id),
+																				array(	'submit'=>array('feedback/delete', 'id'=>$feedback->id),
+																						'class' => 'delete btn btn-danger','confirm'=>'This will remove the feedback. Are you sure?'));?>
 													                    	
 													                    	<a href="index.php?r=feedbackActionPlan/create&feedbackId= <?php echo $feedback->id;?>" class="btn btn-primary" data-dismiss="modal">Add Action Plan</a>
 													                    	<a href="index.php?r=feedbackSwotAnalysis/create&feedbackId= <?php echo $feedback->id;?>" class="btn btn-primary" data-dismiss="modal">Add SWOT Analysis</a>
@@ -134,6 +150,10 @@ $this->pageTitle=Yii::app()->name;
 																			        		
 																			        		<div class="pull-right" style="margin-top: -.5em;">
 																		                    	<a href="index.php?r=feedbackSwotAnalysis/update&id= <?php echo $feedbackSwotAnalysise->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+																		                    	
+																		                    	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedbackSwotAnalysis/delete', 'id'=>$feedbackSwotAnalysise->id),
+																									array(	'submit'=>array('feedbackSwotAnalysis/delete', 'id'=>$feedbackSwotAnalysise->id),
+																											'class' => 'delete btn btn-danger','confirm'=>'This will remove the SWOT analysis. Are you sure?'));?>
 																		                    </div>
 																					    </div>
 																			
@@ -172,7 +192,11 @@ $this->pageTitle=Yii::app()->name;
 																			        		<i class="fa fa-bar-chart fa-fw"></i> Action plan
 																			        		
 																			        		<div class="pull-right" style="margin-top: -.5em;">
-																		                    	<a href="index.php?r=feedbackActionPlan/update&id= <?php echo $feedbackSwotAnalysise->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+																		                    	<a href="index.php?r=feedbackActionPlan/update&id= <?php echo $feedbackActionPlan->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+																		                    	
+																		                    	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedbackActionPlan/delete', 'id'=>$feedbackActionPlan->id),
+																									array(	'submit'=>array('feedbackActionPlan/delete', 'id'=>$feedbackActionPlan->id),
+																											'class' => 'delete btn btn-danger','confirm'=>'This will remove the action plan. Are you sure?'));?>
 																		                    </div>
 																					    </div>
 																			
