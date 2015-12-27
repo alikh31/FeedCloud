@@ -16,6 +16,8 @@
  */
 class Feedback extends CActiveRecord
 {
+	public $image;
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,6 +40,7 @@ class Feedback extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, feedback_file, description, module', 'safe', 'on'=>'search'),
+			array('image', 'file', 'types'=>'pdf', 'safe' => false)
 		);
 	}
 

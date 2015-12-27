@@ -34,7 +34,7 @@ class FeedbackController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','delete'),
+				'actions'=>array('update','delete','download'),
 				'users'=>array('admin', (isset($model) && isset($model->module0->academicYear->student))? $model->module0->academicYear->student->email : ''),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -70,18 +70,45 @@ class FeedbackController extends Controller
 		// $this->performAjaxValidation($model);
 		
 		$model->module = $moduleId;
+		$model->feedback_file = "ttt";
 
 		if(isset($_POST['Feedback']))
 		{
 			$model->attributes=$_POST['Feedback'];
+			$model->image=CUploadedFile::getInstance($model,'image');
+			$model->feedback_file = $model->image;
+			
 			if($model->save())
+			{
+				if(file_exists("FeedbackFiles/$model->id"))
+				{
+					unlink("FeedbackFiles/$model->id");
+				}
+				$model->image->saveAs("FeedbackFiles/$model->id");
 				$this->redirect('index.php');
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
 	}
+
+	
+	public function actionDownload($id){
+		$model=$this->loadModel($id);
+		
+		$fullpath = "FeedbackFiles/$id";
+		if(!empty($fullpath)){
+			header("Content-type:application/pdf"); //for pdf file
+			//header('Content-Type:text/plain; charset=ISO-8859-15');
+			//if you want to read text file using text/plain header
+			header('Content-Disposition: attachment; filename="'.$model->feedback_file.'"');
+			header('Content-Length: ' . filesize($fullpath));
+			readfile($fullpath);
+		}
+	}
+	
 
 	/**
 	 * Updates a particular model.
@@ -95,11 +122,23 @@ class FeedbackController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$model->feedback_file = "ttt";
+		
 		if(isset($_POST['Feedback']))
 		{
 			$model->attributes=$_POST['Feedback'];
+			$model->image=CUploadedFile::getInstance($model,'image');
+			$model->feedback_file = $model->image;
+				
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{
+				if(file_exists("FeedbackFiles/$model->id"))
+				{
+					unlink("FeedbackFiles/$model->id");
+				}
+				$model->image->saveAs("FeedbackFiles/$model->id");
+				$this->redirect('index.php');
+			}
 		}
 
 		$this->render('update',array(
