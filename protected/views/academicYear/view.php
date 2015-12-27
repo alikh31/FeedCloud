@@ -70,10 +70,10 @@
 																<div class="panel panel-default">
 														
 														    		<div class="panel-heading">
-														        		<i class="fa fa-file fa-fw"></i> <?php echo $feedback->description;?>
+														        		<i class="fa fa-file fa-fw"></i> <a href="index.php?r=feedback/download&id=<?php echo $feedback->id;?>"> Click to download feedback file </a>
 														        		
 														        		<div class="pull-right" style="margin-top: -.5em;">
-													                    	<a href="index.php?r=feedback/update&id= <?php echo $feedback->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+													                    	<a href="index.php?r=feedback/update&id=<?php echo $feedback->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
 													                    	
 													                    	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedback/delete', 'id'=>$feedback->id),
 																				array(	'submit'=>array('feedback/delete', 'id'=>$feedback->id),
@@ -86,6 +86,9 @@
 														
 														    		<div style="margin: .4em;">
 															        	<div>
+															        	
+															        	<p>Description:<br/> <?php echo $feedback->description;?></p>
+															        	
 															        	
 															        	
 															        	
