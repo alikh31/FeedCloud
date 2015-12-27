@@ -50,7 +50,7 @@ $('.search-form form').submit(function(){
 
         <div id="wrapper">
         
-        	<?php if(!Yii::app()->user->isGuest) {?>
+        	<?php if(!Yii::app()->user->isGuest  && Yii::app()->user->name !== 'admin') {?>
         
         	<div class="navbar-default sidebar" role="navigation">
 			    <div class="sidebar-nav navbar-collapse">
@@ -83,7 +83,25 @@ $('.search-form form').submit(function(){
 			    </div>
 			</div>
 			
-			<?php }?>
+			<?php }
+			elseif (Yii::app()->user->name === 'admin') { ?>
+			
+			<div class="navbar-default sidebar" role="navigation">
+			    <div class="sidebar-nav navbar-collapse">
+			        <ul class="nav" id="side-menu">
+			            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=user/admin"><i class="fa fa-cogs fa-fw active"></i> Manage User</a></li>
+			            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=academicyear/admin"><i class="fa fa-cogs fa-fw active"></i> Manage Academic Years</a></li>
+			            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=module/admin"><i class="fa fa-cogs fa-fw active"></i> Manage Modules</a></li>
+			            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=feedback/admin"><i class="fa fa-cogs fa-fw active"></i> Manage Fedbacks</a></li>
+			            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=feedbackswotanalysis/admin"><i class="fa fa-cogs fa-fw active"></i> Manage SWOT Analysis</a></li>
+			            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=feedbackactionplan/admin"><i class="fa fa-cogs fa-fw active"></i> Manage Action Plan</a></li>
+			                                   
+			                             
+			        </ul>
+			    </div>
+			</div>
+				
+			<?php  }?>
 			            
 
             <!-- Navigation -->

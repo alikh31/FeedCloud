@@ -5990,3 +5990,69 @@ HTTP_REFERER=http://localhost:8888/FeedCloud/index.php?r=feedback/update&id=21
 2015/12/27 11:40:16 [warning] [application] Failed to set unsafe attribute "image" of "Feedback".
 in /Applications/MAMP/htdocs/FeedCloud/protected/controllers/FeedbackController.php (129)
 in /Applications/MAMP/htdocs/FeedCloud/index.php (13)
+2015/12/28 00:24:37 [warning] [application] Failed to set unsafe attribute "image" of "Feedback".
+in /Applications/MAMP/htdocs/FeedCloud/protected/controllers/FeedbackController.php (77)
+in /Applications/MAMP/htdocs/FeedCloud/index.php (13)
+2015/12/28 00:36:26 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.isAdmin" is not defined.' in /Applications/MAMP/htdocs/FeedCloud/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/FeedCloud/framework/web/auth/CWebUser.php(146): CComponent->__get('isAdmin')
+#1 /Applications/MAMP/htdocs/FeedCloud/protected/views/site/index.php(17): CWebUser->__get('isAdmin')
+#2 /Applications/MAMP/htdocs/FeedCloud/framework/web/CBaseController.php(126): require('/Applications/M...')
+#3 /Applications/MAMP/htdocs/FeedCloud/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#6 /Applications/MAMP/htdocs/FeedCloud/protected/controllers/SiteController.php(56): CController->render('index', Array)
+#7 /Applications/MAMP/htdocs/FeedCloud/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#8 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/FeedCloud/framework/web/CWebApplication.php(282): CController->run('')
+#12 /Applications/MAMP/htdocs/FeedCloud/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#13 /Applications/MAMP/htdocs/FeedCloud/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/FeedCloud/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/FeedCloud/index.php
+HTTP_REFERER=http://localhost:8888/FeedCloud/index.php?r=feedbackActionPlan/create&feedbackId=%2022
+---
+2015/12/28 00:37:09 [error] [exception.CException] exception 'CException' with message 'CWebUser and its behaviors do not have a method or closure named "isAdmin".' in /Applications/MAMP/htdocs/FeedCloud/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/MAMP/htdocs/FeedCloud/protected/views/site/index.php(17): CComponent->__call('isAdmin', Array)
+#1 /Applications/MAMP/htdocs/FeedCloud/protected/views/site/index.php(17): CWebUser->isAdmin()
+#2 /Applications/MAMP/htdocs/FeedCloud/framework/web/CBaseController.php(126): require('/Applications/M...')
+#3 /Applications/MAMP/htdocs/FeedCloud/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#6 /Applications/MAMP/htdocs/FeedCloud/protected/controllers/SiteController.php(56): CController->render('index', Array)
+#7 /Applications/MAMP/htdocs/FeedCloud/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#8 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/FeedCloud/framework/web/CWebApplication.php(282): CController->run('')
+#12 /Applications/MAMP/htdocs/FeedCloud/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#13 /Applications/MAMP/htdocs/FeedCloud/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/FeedCloud/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/FeedCloud/index.php
+HTTP_REFERER=http://localhost:8888/FeedCloud/index.php?r=feedbackActionPlan/create&feedbackId=%2022
+---
+2015/12/28 00:39:17 [error] [exception.CException] exception 'CException' with message 'CWebUser and its behaviors do not have a method or closure named "isAdmin".' in /Applications/MAMP/htdocs/FeedCloud/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/MAMP/htdocs/FeedCloud/protected/views/site/index.php(17): CComponent->__call('isAdmin', Array)
+#1 /Applications/MAMP/htdocs/FeedCloud/protected/views/site/index.php(17): CWebUser->isAdmin()
+#2 /Applications/MAMP/htdocs/FeedCloud/framework/web/CBaseController.php(126): require('/Applications/M...')
+#3 /Applications/MAMP/htdocs/FeedCloud/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#6 /Applications/MAMP/htdocs/FeedCloud/protected/controllers/SiteController.php(56): CController->render('index', Array)
+#7 /Applications/MAMP/htdocs/FeedCloud/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#8 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /Applications/MAMP/htdocs/FeedCloud/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/FeedCloud/framework/web/CWebApplication.php(282): CController->run('')
+#12 /Applications/MAMP/htdocs/FeedCloud/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#13 /Applications/MAMP/htdocs/FeedCloud/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/FeedCloud/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/FeedCloud/index.php
+HTTP_REFERER=http://localhost:8888/FeedCloud/index.php?r=feedbackActionPlan/create&feedbackId=%2022
+---

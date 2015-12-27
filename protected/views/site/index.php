@@ -9,14 +9,28 @@ $this->pageTitle=Yii::app()->name;
 ?>
 
 
+
+
+<?php 
+	if(Yii::app()->user->name === 'admin')
+	{
+		
+	}
+	
+	else 
+	{
+		?>
+		
 <div style="margin-top: 1em;">
 	<a href="index.php?r=academicYear/create" style="text-align: center;">Add new accademic year</a>												                    	
 </div>
+		<?php 
 
-<?php 
-	foreach ($academic as $record) { 
+		foreach ($academic as $record) { 
 	
 		?> 
+		
+		
 		<div class="col-lg" style="margin-top: 2%;">
 			<div class="panel panel-default">
 	
@@ -258,6 +272,7 @@ $this->pageTitle=Yii::app()->name;
 	   	</div>
 	   	
 	   	<?php
+		}
 	}
 ?>
 
