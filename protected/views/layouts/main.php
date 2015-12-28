@@ -46,6 +46,44 @@ $('.search-form form').submit(function(){
 
     <body>
     
+    <?php
+    	$currentUser;
+    	
+    	if(isset($this->model))
+    	{
+	    	switch ($this->getModelName())
+	    	{
+	    		case 'AcademicYearController':
+	    			$currentUser = $this->model->student;
+	    			break;
+	    		case 'FeedbackActionPlanController':
+	    			$currentUser = $this->model->feedback0->module0->academicYear->student;
+	    			break;
+	    		case 'FeedbackController':
+	    			$currentUser = $this->model->module0->academicYear->student;
+	    			break;
+	    		case 'FeedbackSwotAnalysisController':
+	    			$currentUser = $this->model->feedback0->module0->academicYear->student;
+	    			break;
+	    		case 'ModuleController':
+	    			$currentUser = $this->model->academicYear->student;
+	    			break;
+	    		case 'SiteController':
+	    			$currentUser = $this->currentUser;
+	    			break;
+	    		case 'UserController':
+	    			break;
+	    	}
+    	}
+    	
+    	if($this->getModelName() === 'SiteController')
+    		$currentUser = $this->currentUser;
+    	
+    	if(isset($currentUser))
+    		$academicYears = $currentUser->academicYears;
+    	
+    	//$this->model->id
+    ?>
     	
 
         <div id="wrapper">
@@ -54,25 +92,34 @@ $('.search-form form').submit(function(){
         
         	<div class="navbar-default sidebar" role="navigation">
 			    <div class="sidebar-nav navbar-collapse">
-			        <ul class="nav" id="side-menu">
+			        <ul class="nav" >
 			            <li>
-			                <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php"><i class="fa fa-graduation-cap fa-fw active"></i> Dashboard</a>
+			                <a <?php if($this->getModelName() === 'SiteController') echo 'class="active"'?> href="<?php echo Yii::app()->request->baseUrl; ?>/index.php"><i class="fa fa-graduation-cap fa-fw"></i> Dashboard</a>
 			            </li>
 			            
-			            <?php if(isset($this->academicYears)) {?>                        
+			            <?php if(isset($academicYears)) {?>                        
 			            <li>
 			                <a href="#"><i class="fa fa-clock-o fa-fw"></i> Accademic Years<span class="fa arrow"></span></a>
 			                <ul class="nav nav-second-level">
 			                	
 			                	<?php 
-			                		
-	  									foreach ($this->academicYears as $record) {
-	  										echo '<li>'; 
-	  									   	echo "<a href=\"index.php?r=academicYear/view&id=$record->id\">";echo $record->title;echo"</a>";
-	  									   	echo '</li>';
-	  									}
-			                		
- 			                	?>
+			                	
+	  									foreach ($academicYears as $record) { ?>
+	  									
+	  									
+	  									<li>	  									   	
+	  									   	<a <?php if($this->getModelName() === 'AcademicYearController' && $this->model->id === $record->id) echo 'class="active"'?> href="index.php?r=academicYear/view&id=<?php echo $record->id?>"><i class="fa fa-archive fa-fw"></i>	
+	  									   	<?php echo $record->title; ?>  </a>
+	  									   	
+	  									   	<ul class="nav nav-third-level">
+		  									   		<?php 
+		  									   			foreach ($record->modules as $module) { ?>
+		  									   				<li><a <?php if($this->getModelName() === 'ModuleController' && $this->model->id === $module->id) echo 'class="active"';?> href="index.php?r=module/view&id=<?php echo $module->id?>"> <i class="fa fa-book fa-fw"></i><?php echo $module->title?></a></li>
+		  									   			<?php }?>
+		  									   		
+		  									 </ul>  	
+	  									</li>
+	  								<?php }?>
 			                    <li >
 			                    <a href="index.php?r=academicYear/create" style="text-align: center;">Add new accademic year</a>
 			                    </li>
@@ -122,8 +169,8 @@ $('.search-form form').submit(function(){
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                        	<?php if(isset($this->currentUser) && isset($this->currentUser->id)) {?>
-                            <li><a href="?r=user/update&id=<?php echo $this->currentUser->id?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        	<?php if(isset($currentUser) && isset($currentUser->id)) {?>
+                            <li><a href="?r=user/update&id=<?php echo $currentUser->id?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             </li>
                             <?php }?>
                             <li class="divider"></li>

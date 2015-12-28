@@ -18,6 +18,12 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'id'); ?>
+		<?php echo $form->textField($model,'id',array('rows'=>6, 'cols'=>50, 'class'=>'form-control', 'placeholder'=>'Staff/Student ID', 'aria-describedby'=>'basic-addon1')); ?>
+		<?php echo $form->error($model,'id'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'first_name'); ?>

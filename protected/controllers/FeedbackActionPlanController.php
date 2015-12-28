@@ -7,6 +7,8 @@ class FeedbackActionPlanController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	
+	public $model;
 
 	/**
 	 * @return array action filters
@@ -17,6 +19,11 @@ class FeedbackActionPlanController extends Controller
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
+	}
+	
+	public function getModelName()
+	{
+		return __CLASS__;
 	}
 
 	/**
@@ -52,9 +59,12 @@ class FeedbackActionPlanController extends Controller
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id)
-	{
+	{	
+		$model = $this->loadModel($id);
+		$this->model = $model;
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+				'model'=>$model,
 		));
 	}
 
@@ -118,7 +128,7 @@ class FeedbackActionPlanController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect('index.php');
+			$this->redirect(Yii::app()->request->urlReferrer);
 	}
 
 	/**

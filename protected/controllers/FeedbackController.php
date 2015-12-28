@@ -7,6 +7,8 @@ class FeedbackController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	
+	public $model;
 
 	/**
 	 * @return array action filters
@@ -17,6 +19,11 @@ class FeedbackController extends Controller
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
+	}
+	
+	public function getModelName()
+	{
+		return __CLASS__;
 	}
 
 	/**
@@ -34,11 +41,11 @@ class FeedbackController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','delete','download'),
+				'actions'=>array('update','delete','download','view'),
 				'users'=>array('admin', (isset($model) && isset($model->module0->academicYear->student))? $model->module0->academicYear->student->email : ''),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','index','view'),
+				'actions'=>array('admin','index'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -53,8 +60,11 @@ class FeedbackController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		$this->model = $model;
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+				'model'=>$model,
 		));
 	}
 
@@ -157,7 +167,7 @@ class FeedbackController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect('index.php');
+			$this->redirect(Yii::app()->request->urlReferrer);
 	}
 
 	/**

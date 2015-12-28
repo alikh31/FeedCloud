@@ -11,6 +11,8 @@ class AcademicYearController extends Controller
 	public $academicYears;
 	public $currentUser;
 	
+	public $model;
+	
 	private function updateInfo()
 	{
 		if (!Yii::app()->user->isGuest)
@@ -32,6 +34,11 @@ class AcademicYearController extends Controller
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
+	}
+	
+	public function getModelName()
+	{
+		return __CLASS__;
 	}
 	
 // 	public function action()
@@ -79,8 +86,11 @@ class AcademicYearController extends Controller
 	{
 		$this->updateInfo();
 		
+		$model = $this->loadModel($id);
+		$this->model = $model;
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 

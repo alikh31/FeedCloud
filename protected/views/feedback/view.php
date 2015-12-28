@@ -1,29 +1,47 @@
-<?php
-/* @var $this FeedbackController */
-/* @var $model Feedback */
+<?php $feedback = $model; ?>
 
-$this->breadcrumbs=array(
-	'Feedbacks'=>array('index'),
-	$model->id,
-);
+<div class="col-lg" >
+	<div class="panel panel-default">
 
-$this->menu=array(
-	array('label'=>'List Feedback', 'url'=>array('index')),
-	array('label'=>'Create Feedback', 'url'=>array('create')),
-	array('label'=>'Update Feedback', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Feedback', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Feedback', 'url'=>array('admin')),
-);
-?>
+		<div class="panel-heading">
+    		<i class="fa fa-file fa-fw"></i> <a href="index.php?r=feedback/download&id=<?php echo $feedback->id;?>"> Click to download feedback file </a>
+    		
+    		<div class="pull-right" style="margin-top: -.5em;">
+            	<a href="index.php?r=feedback/update&id=<?php echo $feedback->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+            	
+            	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedback/delete', 'id'=>$feedback->id),
+					array(	'submit'=>array('feedback/delete', 'id'=>$feedback->id),
+							'class' => 'delete btn btn-danger','confirm'=>'This will remove the feedback. Are you sure?'));?>
+            	
+            	<a href="index.php?r=feedbackActionPlan/create&feedbackId= <?php echo $feedback->id;?>" class="btn btn-primary" data-dismiss="modal">Add Action Plan</a>
+            	<a href="index.php?r=feedbackSwotAnalysis/create&feedbackId= <?php echo $feedback->id;?>" class="btn btn-primary" data-dismiss="modal">Add SWOT Analysis</a>
+            </div>
+	    </div>
 
-<h1>View Feedback #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'feedback_file',
-		'description',
-		'module',
-	),
-)); ?>
+		<div style="margin: .4em;">
+        	<div>
+        	
+        	<p>Description:<br/> <?php echo $feedback->description;?></p>
+        	<?php 
+   			if(isset($feedback->feedbackSwotAnalysises))
+   			{
+	   			foreach ($feedback->feedbackSwotAnalysises as $feedbackSwotAnalysise){
+	   				
+					$this->renderPartial('/feedbackSwotAnalysis/view', array('model'=>$feedbackSwotAnalysise));
+	   			}
+   			}
+    		?>
+    		
+    		
+    		<?php 
+   			if(isset($feedback->feedbackActionPlans))
+   			{
+	   			foreach ($feedback->feedbackActionPlans as $feedbackActionPlan){
+	   				$this->renderPartial('/feedbackActionPlan/view', array('model'=>$feedbackActionPlan));
+	   			}
+   			}
+    		?>
+	   		</div>
+   		</div>
+   	</div>
+</div>

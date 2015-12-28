@@ -1,29 +1,68 @@
-<?php
-/* @var $this FeedbackSwotAnalysisController */
-/* @var $model FeedbackSwotAnalysis */
+<?php $feedbackSwotAnalysise = $model;?>	   				
+<div class="col-lg" >
+	<div class="panel <?php
+    		switch($feedbackSwotAnalysise->type)
+    		{
+    			case 0:
+    				echo "panel-success";
+    				break;
+    				
+    			case 1:
+    				echo "panel-warning";
+    				break;
+    				
+    			case 2:
+    				echo "panel-info";
+    				break;
+    						
+    			case 3:
+   					echo "panel-danger";
+   					break;
+    		}
+    				
+    		?>">
 
-$this->breadcrumbs=array(
-	'Feedback Swot Analysises'=>array('index'),
-	$model->id,
-);
+		<div class="panel-heading">
+    		<i class="fa fa-bar-chart fa-fw"></i> SWOT analysis: <?php
+    		
+    		switch($feedbackSwotAnalysise->type)
+    		{
+    			case 0:
+    				echo "strengths";
+    				break;
+    				
+    			case 1:
+    				echo "weaknesses";
+    				break;
+    				
+    			case 2:
+    				echo "opportunities";
+    				break;
+    						
+    			case 3:
+   					echo "threats";
+   					break;
+    		}
+    				
+    		?>
+    		
+    		<div class="pull-right" style="margin-top: -.5em;">
+            	<a href="index.php?r=feedbackSwotAnalysis/update&id= <?php echo $feedbackSwotAnalysise->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+            	
+            	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedbackSwotAnalysis/delete', 'id'=>$feedbackSwotAnalysise->id),
+					array(	'submit'=>array('feedbackSwotAnalysis/delete', 'id'=>$feedbackSwotAnalysise->id),
+							'class' => 'delete btn btn-danger','confirm'=>'This will remove the SWOT analysis. Are you sure?'));?>
+            </div>
+	    </div>
 
-$this->menu=array(
-	array('label'=>'List FeedbackSwotAnalysis', 'url'=>array('index')),
-	array('label'=>'Create FeedbackSwotAnalysis', 'url'=>array('create')),
-	array('label'=>'Update FeedbackSwotAnalysis', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete FeedbackSwotAnalysis', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage FeedbackSwotAnalysis', 'url'=>array('admin')),
-);
-?>
-
-<h1>View FeedbackSwotAnalysis #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'type',
-		'description',
-		'feedback',
-	),
-)); ?>
+		<div style="margin: .4em;">
+        	<div>
+        	
+        		
+        		<p><?php echo $feedbackSwotAnalysise->description;?></p>
+        	
+		   			
+	   		</div>
+   		</div>
+   	</div>
+</div>

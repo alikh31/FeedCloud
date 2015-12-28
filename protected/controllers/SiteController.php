@@ -7,6 +7,7 @@ class SiteController extends Controller
 	 */
 	public $academicYears;
 	public $currentUser;
+	public $model;
 	
 	public function actions()
 	{		
@@ -24,6 +25,11 @@ class SiteController extends Controller
 				'class'=>'CViewAction',
 			),
 		);
+	}
+	
+	public function getModelName()
+	{
+		return __CLASS__;
 	}
 
 	/**

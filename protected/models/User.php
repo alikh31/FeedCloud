@@ -36,6 +36,7 @@ class User extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, first_name, last_name, password, email', 'safe', 'on'=>'search'),
 			array('email', 'unique'),
+			array('id', 'unique'),
 		);
 	}
 

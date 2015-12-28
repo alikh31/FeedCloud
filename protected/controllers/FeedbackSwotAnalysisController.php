@@ -7,6 +7,8 @@ class FeedbackSwotAnalysisController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	
+	public $model;
 
 	/**
 	 * @return array action filters
@@ -17,6 +19,11 @@ class FeedbackSwotAnalysisController extends Controller
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
+	}
+	
+	public function getModelName()
+	{
+		return __CLASS__;
 	}
 
 	/**
@@ -53,8 +60,11 @@ class FeedbackSwotAnalysisController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		$this->model = $model;
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+				'model'=>$model,
 		));
 	}
 
@@ -99,7 +109,7 @@ class FeedbackSwotAnalysisController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackSwotAnalysis'];
 			if($model->save())
-				$this->redirect('index.php');
+				$this->redirect('index.php?r=feedback/view&id='.$model->feedback0->id);
 		}
 
 		$this->render('update',array(
@@ -118,7 +128,7 @@ class FeedbackSwotAnalysisController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect('index.php');
+			$this->redirect(Yii::app()->request->urlReferrer);
 	}
 
 	/**

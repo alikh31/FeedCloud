@@ -1,28 +1,28 @@
-<?php
-/* @var $this FeedbackActionPlanController */
-/* @var $model FeedbackActionPlan */
+<?php $feedbackActionPlan = $model;?>
+	   				
+<div class="col-lg" >
+	<div class="panel panel-primary">
 
-$this->breadcrumbs=array(
-	'Feedback Action Plans'=>array('index'),
-	$model->id,
-);
+		<div class="panel-heading">
+    		<i class="fa fa-bar-chart fa-fw"></i> Action plan
+    		
+    		<div class="pull-right" style="margin-top: -.5em;">
+            	<a href="index.php?r=feedbackActionPlan/update&id= <?php echo $feedbackActionPlan->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
+            	
+            	<? 	echo CHtml::link(CHtml::encode('remove'), array('feedbackActionPlan/delete', 'id'=>$feedbackActionPlan->id),
+					array(	'submit'=>array('feedbackActionPlan/delete', 'id'=>$feedbackActionPlan->id),
+							'class' => 'delete btn btn-danger','confirm'=>'This will remove the action plan. Are you sure?'));?>
+            </div>
+	    </div>
 
-$this->menu=array(
-	array('label'=>'List FeedbackActionPlan', 'url'=>array('index')),
-	array('label'=>'Create FeedbackActionPlan', 'url'=>array('create')),
-	array('label'=>'Update FeedbackActionPlan', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete FeedbackActionPlan', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage FeedbackActionPlan', 'url'=>array('admin')),
-);
-?>
-
-<h1>View FeedbackActionPlan #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'description',
-		'feedback',
-	),
-)); ?>
+		<div style="margin: .4em;">
+        	<div>
+        	
+        		
+        		<p><?php echo $feedbackActionPlan->description;?></p>
+        	
+		   			
+	   		</div>
+   		</div>
+   	</div>
+</div>

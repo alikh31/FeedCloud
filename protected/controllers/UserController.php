@@ -18,6 +18,11 @@ class UserController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
+	
+	public function getModelName()
+	{
+		return __CLASS__;
+	}
 
 	/**
 	 * Specifies the access control rules.
