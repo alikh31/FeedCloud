@@ -85,7 +85,7 @@ class FeedbackActionPlanController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackActionPlan'];
 			if($model->save())
-				$this->redirect('index.php');
+				$this->redirect(array('feedback/view',"id"=>$feedbackId));
 		}
 
 		$this->render('create',array(
@@ -109,7 +109,7 @@ class FeedbackActionPlanController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackActionPlan'];
 			if($model->save())
-				$this->redirect('index.php');
+				$this->redirect(array('feedback/view',"id"=>$model->feedback0->id));
 		}
 
 		$this->render('update',array(

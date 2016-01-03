@@ -85,7 +85,7 @@ class FeedbackSwotAnalysisController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackSwotAnalysis'];
 			if($model->save())
-				$this->redirect('index.php');
+				$this->redirect(array('feedback/view',"id"=>$feedbackId));
 		}
 
 		$this->render('create',array(
@@ -109,7 +109,7 @@ class FeedbackSwotAnalysisController extends Controller
 		{
 			$model->attributes=$_POST['FeedbackSwotAnalysis'];
 			if($model->save())
-				$this->redirect('index.php?r=feedback/view&id='.$model->feedback0->id);
+				$this->redirect(array('feedback/view',"id"=>$model->feedback0->id));
 		}
 
 		$this->render('update',array(

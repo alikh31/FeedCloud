@@ -95,7 +95,7 @@ class FeedbackController extends Controller
 					unlink("FeedbackFiles/$model->id");
 				}
 				$model->image->saveAs("FeedbackFiles/$model->id");
-				$this->redirect('index.php');
+				$this->redirect(array('module/view',"id"=>$moduleId));
 			}
 		}
 
@@ -147,7 +147,7 @@ class FeedbackController extends Controller
 					unlink("FeedbackFiles/$model->id");
 				}
 				$model->image->saveAs("FeedbackFiles/$model->id");
-				$this->redirect('index.php');
+				$this->redirect(array('module/view',"id"=>$model->module0->id));
 			}
 		}
 

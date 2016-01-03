@@ -6,7 +6,9 @@
 			<div class="panel panel-default">
 	
 	    		<div class="panel-heading">
-	        		<i class="fa fa-archive fa-fw"></i> <?php echo $record->title;?>
+	        		<i class="fa fa-archive fa-fw"></i> <?php echo $record->year;?>
+	        		
+	        		
 	        		
 	        		<div class="pull-right" style="margin-top: -.5em;">
                     	<a href="index.php?r=academicYear/update&id= <?php echo $record->id;?>" class="btn btn-default" data-dismiss="modal">Edit</a>
@@ -20,6 +22,8 @@
 	
 	    		<div style="margin: .4em;">
 		        	<div>
+		        		
+		        		<h2><?php echo $record->title?></h2>
 				   			
 				   			
 				   			<?php 
